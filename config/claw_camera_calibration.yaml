@@ -1,0 +1,26 @@
+# Fill these values after calibrating the camera mounted near/on the claw.
+# This camera should be used for close-range alignment, not long-distance depth.
+
+image_width: 640
+image_height: 480
+square_size_m: 0.024
+
+camera_matrix: null
+distortion_coefficients: null
+
+mounted_to: end_effector
+
+transform_camera_to_gripper:
+  translation_m:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  rotation_rpy_degrees:
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+
+close_range:
+  desired_apple_radius_pixels: 80
+  centered_pixel_tolerance: 24
+  stop_when_radius_pixels: 120

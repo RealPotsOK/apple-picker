@@ -1,0 +1,9 @@
+ultralytics
+opencv-python
+numpy
+scipy
+pyyaml
+pytorch-kinematics
+yourdfpy
+xacro
+feetech-servo-sdk

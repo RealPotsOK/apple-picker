@@ -1,0 +1,21 @@
+# Fill these values after calibrating the two fixed overview cameras together.
+# These cameras estimate the apple position before the arm moves in.
+
+image_width: 640
+image_height: 480
+square_size_m: 0.024
+
+left_camera_matrix: null
+left_distortion_coefficients: null
+
+right_camera_matrix: null
+right_distortion_coefficients: null
+
+rotation_left_to_right: null
+translation_left_to_right_m: null
+
+rectification_left: null
+rectification_right: null
+projection_left: null
+projection_right: null
+disparity_to_depth_matrix: null

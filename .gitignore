@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# OS/editor files
+.DS_Store
+.idea/
+.vscode/
+
+# Local cloned dependencies / checkouts
+SO-100-arm/
+
+# Runtime outputs
+runs/
+logs/
+outputs/
+wandb/
+
+# Data and trained model artifacts can get large.
+data/raw_images/
+data/labeled/
+data/yolo_dataset/
+data/demos/
+models/yolo/*.pt
+models/yolo/*.onnx
+models/yolo/*.engine
+models/act/
+
+# Keep source robot descriptions, but ignore generated local calibration files
+# if later tools write per-machine outputs here.
+*.log

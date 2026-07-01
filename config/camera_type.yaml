@@ -1,0 +1,39 @@
+camera_type: three_camera_rig
+
+overview_left_camera:
+  device_index: 0
+  name: overview_left
+  role: overview_detection
+
+overview_right_camera:
+  device_index: 1
+  name: overview_right
+  role: overview_detection
+
+claw_camera:
+  device_index: 2
+  name: claw
+  role: close_range_alignment
+  mounted_to: end_effector
+
+overview_stream:
+  width: 640
+  height: 480
+  fps: 30
+
+claw_stream:
+  width: 640
+  height: 480
+  fps: 30
+
+position_source: overview_stereo_triangulation
+close_range_source: claw_camera_visual_servoing
+
+requires_overview_stereo_calibration: true
+requires_claw_camera_calibration: true
+requires_camera_to_robot_calibration: true
+
+calibration:
+  overview_stereo_file: config/overview_stereo_calibration.yaml
+  claw_camera_file: config/claw_camera_calibration.yaml
+  camera_to_robot_file: config/camera_to_robot.yaml

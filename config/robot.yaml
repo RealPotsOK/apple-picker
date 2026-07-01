@@ -1,0 +1,15 @@
+home_pose: [0, 0, 0, 0, 0, 0]
+basket_pose: [0.3, -0.4, 0.2, 0, 0, 0]
+approach_distance_m: 0.12
+pull_distance_m: 0.10
+
+target_source: overview_stereo_apple_position
+final_alignment_source: claw_camera
+max_reach_m: 0.45
+min_safe_distance_m: 0.08
+
+claw_alignment:
+  enabled: true
+  max_forward_step_m: 0.02
+  max_side_step_m: 0.01
+  centered_pixel_tolerance: 24

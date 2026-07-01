@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<robot name="so_arm_100_5dof_ik" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="so_arm_100_description/urdf/so_arm_100_5dof_arm.urdf.xacro" />
+  <xacro:so_arm_100_5dof prefix="" />
+</robot>

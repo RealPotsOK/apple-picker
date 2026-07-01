@@ -1,0 +1,45 @@
+robot: so100
+
+# This Xacro came from the cloned SO-100-arm repository. It should be expanded
+# to URDF before loading it into most Python IK libraries.
+xacro_path: models/so100/so_arm_100_5dof_ik.urdf.xacro
+generated_urdf_path: models/so100/so_arm_100_5dof.generated.urdf
+description_package_path: models/so100/so_arm_100_description
+
+# Replace end_effector_link with your custom claw-tip link after the claw is
+# added to the model. For now this uses the stock model's end-effector marker.
+base_link: base_link
+end_effector_link: End_Effector
+
+joint_names:
+  - Shoulder_Rotation
+  - Shoulder_Pitch
+  - Elbow
+  - Wrist_Pitch
+  - Wrist_Roll
+
+# Keep the gripper/claw open-close control separate from arm IK.
+gripper_joint_name: Gripper
+
+workspace_limits_m:
+  x: [-0.35, 0.45]
+  y: [-0.45, 0.45]
+  z: [0.02, 0.55]
+
+solver:
+  type: damped_least_squares
+  max_iterations: 200
+  position_tolerance_m: 0.01
+  orientation_tolerance_degrees: 8.0
+  damping: 0.05
+  retries: 8
+
+motion:
+  max_joint_step_degrees: 3.0
+  max_joint_speed_degrees_per_s: 35.0
+  command_rate_hz: 30
+
+failure_behavior:
+  on_unreachable_target: stop_and_hold_position
+  on_joint_limit_violation: stop_and_hold_position
+  on_solver_timeout: stop_and_hold_position
