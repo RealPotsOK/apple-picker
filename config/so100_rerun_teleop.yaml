@@ -1,0 +1,85 @@
+urdf_path: SO-ARM100/Simulation/SO100/so100.urdf
+
+# Stream smaller position increments quickly for smooth physical motion.
+control_rate_hz: 50
+# Rerun does not need to consume time on every hardware-control tick.
+viewer_rate_hz: 30
+# Horizontal apple-approach motion is faster than vertical lifting.
+cartesian_speed_m_s: 0.08
+lateral_speed_m_s: 0.10
+vertical_speed_m_s: 0.06
+controller_horizontal_speed_presets_m_s:
+  left: 0.04
+  up: 0.10
+  right: 0.16
+  down: 0.20
+# A quick direction-key tap creates this displacement from the latest measured
+# pose. Repeated taps cannot build a delayed queue while the arm is stalled.
+# A quick tap gets a small impulse, but cannot outrun holding a direction.
+tap_step_m: 0.001
+max_cartesian_error_m: 0.01
+position_tolerance_m: 0.0005
+pitch_speed_degrees_s: 45
+pitch_tolerance_degrees: 0.5
+max_pitch_error_degrees: 10
+roll_speed_degrees_s: 90
+# The physical wrist is mounted 180 degrees from the stock URDF visual.
+# This affects only Rerun rendering, never motor commands or IK.
+rerun_roll_offset_degrees: 180
+# Converts angular error into a comparable IK task scale alongside meters.
+pitch_weight_m_per_rad: 0.08
+gripper_speed_rad_s: 0.8
+ik_damping: 0.04
+gamepad_deadzone: 0.15
+# A one-unit error was too small to lift the loaded arm against gravity. Three
+# normalized units is still a small fraction of a calibrated joint's range.
+max_joint_step_normalized: 3.0
+
+end_effector_link: gripper
+# The fixed jaw mesh extends roughly 10.6 cm along local -Y from the wrist
+# pivot. IK controls this point instead of the wrist-roll joint origin.
+end_effector_offset_xyz: [0.0, -0.10, 0.0]
+arm_joint_names:
+  - shoulder_pan
+  - shoulder_lift
+  - elbow_flex
+  - wrist_flex
+  - wrist_roll
+
+# Motor 5 is commanded independently, but Cartesian IK must not use roll to
+# solve claw-position or pitch movement.
+uncommanded_joint_names: []
+ik_excluded_joint_names:
+  - wrist_roll
+
+pitch_joint_names:
+  - shoulder_lift
+  - elbow_flex
+  - wrist_flex
+
+gripper_joint_name: gripper
+roll_joint_name: wrist_roll
+
+# Flip a direction only if measured motion proves that joint is reversed.
+joint_directions:
+  shoulder_pan: -1
+  shoulder_lift: 1
+  elbow_flex: 1
+  wrist_flex: 1
+  wrist_roll: 1
+  gripper: 1
+
+robot:
+  port: /dev/cu.usbmodem59700721591
+  id: apple_picker_arm
+  # The base needs less stiffness to avoid hunting; gravity-loaded pitch joints
+  # retain the stronger setting. LeRobot's standard value is 16, servo default 32.
+  arm_p_coefficients:
+    shoulder_pan: 20
+    shoulder_lift: 40
+    elbow_flex: 48
+    wrist_flex: 40
+    wrist_roll: 24
+  # Final hardware backstop: no requested joint may be more than four
+  # normalized units away from its latest measured position.
+  max_relative_target: 4.0

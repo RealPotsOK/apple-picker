@@ -1,4 +1,7 @@
 ultralytics
+coremltools>=9.0,<10
+scikit-learn>=1.9,<2
+lap>=0.5.12
 opencv-python
 numpy
 scipy
@@ -7,3 +10,6 @@ pytorch-kinematics
 yourdfpy
 xacro
 feetech-servo-sdk
+rerun-sdk>=0.26,<0.34
+pygame>=2.5.1,<2.7
+pynput>=1.7.8,<1.9

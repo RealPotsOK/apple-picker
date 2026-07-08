@@ -38,3 +38,5 @@ models/act/
 # Keep source robot descriptions, but ignore generated local calibration files
 # if later tools write per-machine outputs here.
 *.log
+
+SO-ARM100/
